@@ -60,7 +60,7 @@ div.scrollcards .card {
 
 @media only screen and (max-width: 1000px) {
   .box {
-    max-width: 90%;
+    max-width: 100%;
   }
 }
 
@@ -121,4 +121,28 @@ div.scrollcards .card {
   margin: 0 0 5px;
   padding: 10px;
   font-size: 15px;
+}
+
+.ast-custom-button {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  font-size: 1rem;
+}
+
+.btn-green-moon {
+  background: #990a22 !important;
+  background: linear-gradient(
+    to right,
+    #990a22 8%,
+    #c80936 50%,
+    #d31f1f 100%
+  ) !important;
+
+  /* background: #56ab2f !important;
+  background: -webkit-linear-gradient(to right, #a8e063, #56ab2f) !important;
+  background: linear-gradient(to right, #a8e063, #56ab2f) !important; */
+  color: #fff !important;
+  border: 3px solid #eee !important;
+  border-radius: 5px !important;
 }
