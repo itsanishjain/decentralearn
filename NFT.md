@@ -29,3 +29,6 @@ Nameing for the metadata have to padded with the 64suffix 0 and the the id
 are in this token contract
 
 0x41de50BB1Bd1A0Fecc0f04a747c0e36D6AaBd9f3
+
+
+# To mint a NFT we need a metadata which has the description about the nft and main thing url for the saved NFT
