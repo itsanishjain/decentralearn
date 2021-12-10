@@ -21,6 +21,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.6.1/web3.min.js"></script>
     <link rel="stylesheet" href="navbarstyle.css" />
 
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/gh/zerodevx/zero-md@2/dist/zero-md.min.js"
+    ></script>
+
     <title>Learnzy</title>
   </head>
 
@@ -51,9 +56,13 @@
           <li class="nav-item">
             <a href="create.html" class="nav-link" target="_blank">Create</a>
           </li>
+          <!-- <li class="nav-item">
+            <a href="detail.html" class="nav-link">Detail</a>
+          </li> -->
           <li class="nav-item">
             <a href="profile.html" class="nav-link" target="_blank">Profile</a>
           </li>
+
           <li class="nav-item">
             <a href="whitePaper.html" class="nav-link">whitePaper</a>
           </li>
@@ -64,30 +73,15 @@
       </button>
     </nav>
 
-    <div class="container text-center" style="margin-top: 50px">
-      <div class="jumbotron">
-        <h1 class="gradient-text">Welcome To The Future Of Learning</h1>
-        <p style="font-size: 1.4rem; font-weight: 500">
-          Learnzy is a library on blockchain. A decentralized open learning
-          platform where you can learn and earn. Resources stored on
-          decentralised storage, becomes immortal. No central authority to
-          control. Contributors and learners will earn “learn” token and can use
-          it for premium contents.
-        </p>
+    <div class="container" style="margin-top: 50px; margin-bottom: 50px;">
 
-        <p style="font-weight: 600px">Please Select Matic Mumbai Testnet</p>
-
-        <button class="btn btn-primary btn-green-moon" id="btn-login">
-          Metamask Login
-        </button>
-      </div>
-      <div id="root" style="font-size: 1rem"></div>
+        <zero-md src="whitePaper.md"></zero-md>
+    
     </div>
-
-    <div class="footer">
+    <!-- <div class="footer">
       Copyright © 2021 Decentralearn.
       <strong>| Powered by Polygon & Moralis</strong>.
-    </div>
+    </div> -->
   </body>
   <script type="text/javascript" src="./main.js"></script>
   <script

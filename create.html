@@ -18,10 +18,11 @@
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="navbarstyle.css" />
 
+    <!-- Moralis & web3 -->
     <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
     <script src="https://unpkg.com/moralis/dist/moralis.js"></script>
 
-    <title>DecentraLearn | Create</title>
+    <title>Learnzy 🔥 | Create</title>
   </head>
 
   <body>
@@ -40,22 +41,25 @@
       <div class="collapse navbar-collapse" id="navBarItems">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" target="_blank">BURNNIG NFTs 🔥</a>
+            <a href="/" class="nav-link" target="_blank">Learnzy 🔥</a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="home.html" class="nav-link" target="_blank">Home</a>
-          </li>
+          </li> -->
           <li class="nav-item">
             <a href="listing.html" class="nav-link" target="_blank">Listing</a>
           </li>
           <li class="nav-item">
             <a href="create.html" class="nav-link" target="_blank">Create</a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="detail.html" class="nav-link">Detail</a>
-          </li>
+          </li> -->
           <li class="nav-item">
             <a href="profile.html" class="nav-link" target="_blank">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a href="whitePaper.html" class="nav-link">whitePaper</a>
           </li>
         </ul>
       </div>
@@ -76,18 +80,6 @@
             required
           />
         </div>
-
-        <div class="form-group">
-          <label for="category">Category</label>
-          <input
-            type="text"
-            class="form-control"
-            id="category"
-            name="category"
-            placeholder="Category"
-          />
-        </div>
-
         <div class="form-group">
           <label for="description">Description</label>
           <textarea
@@ -108,46 +100,8 @@
           />
         </div>
 
-        <div class="form-group">
-          <label for="subject">Subject</label>
-          <select class="form-control" id="subject" name="subject">
-            <option>Math</option>
-            <option>Science</option>
-            <option>English</option>
-            <option>History</option>
-            <option>Geography</option>
-            <option>Art</option>
-            <option>Music</option>
-            <option>Other</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="topic">Topic</label>
-          <input
-            type="text"
-            class="form-control"
-            id="topic"
-            name="topic"
-            placeholder="Topic"
-          />
-        </div>
-
-        <div class="form-group">
-          <label for="free">Free</label>
-          <input type="radio" class="" id="free" name="plan" value="free" />
-
-          <label for="premium">Premium</label>
-          <input
-            type="radio"
-            class=""
-            id="premium"
-            name="plan"
-            value="premium"
-          />
-        </div>
-
-        <div class="form-group">
+        <!-- Feature is still in progress -->
+        <div class="form-group" style="display: none">
           <label for="selectCreateItemStatus">Status</label>
           <select id="selectCreateItemStatus" class="form-control">
             <option value="0">Not for sale</option>

@@ -12,18 +12,23 @@ const MARKETPLACE_CONTRACT_ADDRESS = "MARKETPLACE_CONTRACT_ADDRESS";
 hideElement = (element) => (element.style.display = "none");
 showElement = (element) => (element.style.display = "block");
 
+let user;
+let userAddress;
+
 const init = async () => {
-  console.log("Initiated");
-  let user = Moralis.User.current();
+  console.log("Initiated in createad page");
+  user = Moralis.User.current();
   window.web3 = await Moralis.Web3.enable();
   window.tokenContract = new web3.eth.Contract(
     tokenContractAbi,
     TOKEN_CONTRACT_ADDRESS
   );
   if (user) {
+    userAddress = user.get("ethAddress");
     console.log(user, "alredy we have your data in our database");
   } else {
     console.log("NOT LOGGED IN");
+    window.location.replace("/");
   }
 };
 
@@ -71,9 +76,6 @@ createItem = async () => {
 
   console.log("HI NFTS WITH THIS ID>>>>>>>", nftId);
 
-  user = await Moralis.User.current();
-  const userAddress = user.get("ethAddress");
-
   switch (createItemStatusField.value) {
     case "0":
       hideElement(spinner);
@@ -88,6 +90,8 @@ createItem = async () => {
           createItemPriceField.value
         )
         .send({ from: userAddress });
+      hideElement(spinner);
+      showElement(createItemBtn);
       break;
     case "2":
       hideElement(spinner);
@@ -100,12 +104,31 @@ createItem = async () => {
   showElement(createItemBtn);
 };
 
+// Mint NFT
 mintNft = async (metadataUrl) => {
   const receipt = await tokenContract.methods
     .createItem(metadataUrl)
-    .send({ from: ethereum.selectedAddress });
+    // .send({ from: ethereum.selectedAddress });
+    .send({ from: userAddress });
+
+  console.log(userAddress, "USER ADDRESS@@@@@@@@@@@@@@@@@@@@@@");
+  console.log(ethereum.selectedAddress, ">>>>>>>>>>");
   console.log("THIS IS THE RECIPT", receipt);
   return receipt.events.Transfer.returnValues.tokenId;
+};
+
+ensureMarketplaceIsApproved = async (tokenId, tokenAddress) => {
+  user = await Moralis.User.current();
+  const userAddress = user.get("ethAddress");
+  const contract = new web3.eth.Contract(tokenContractAbi, tokenAddress);
+  const approvedAddress = await contract.methods
+    .getApproved(tokenId)
+    .call({ from: userAddress });
+  if (approvedAddress != MARKETPLACE_CONTRACT_ADDRESS) {
+    await contract.methods
+      .approve(MARKETPLACE_CONTRACT_ADDRESS, tokenId)
+      .send({ from: userAddress });
+  }
 };
 
 const createItemFile = document.getElementById("fileCreateItemFile");
@@ -120,3 +143,4 @@ createItemBtn.onclick = createItem;
 const createItemStatusField = document.getElementById("selectCreateItemStatus");
 
 init();
+// window.location.reload();
