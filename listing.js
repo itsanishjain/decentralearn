@@ -28,7 +28,8 @@ const init = async () => {
     console.log(user, "alredy we have your data in our database");
   } else {
     console.log("NOT LOGGED IN");
-    window.location.replace("/");
+    // window.location.replace("/");
+    alert("Please Login First")
   }
 };
 
