@@ -20,11 +20,11 @@ const init = () => {
     console.log(user, "alredy we have your data in our database");
     document.getElementById("root").innerHTML =
       "Logged in as " + user.get("ethAddress");
-    showElement(navbar);
+    // showElement(navbar);
     showElement(logoutBtn);
   } else {
     console.log("NOT LOGGED IN");
-    hideElement(navbar);
+    // hideElement(navbar);
     hideElement(logoutBtn);
   }
 };
