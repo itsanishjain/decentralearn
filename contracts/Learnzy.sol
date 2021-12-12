@@ -11,11 +11,11 @@ import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contr
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/Counters.sol";
 
 
-contract DecentraLearn is ERC721 {
+contract Learnzy is ERC721 {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
 
-    constructor () ERC721("DecentraLearn", "DLearn"){}
+    constructor () ERC721("Learnzy", "LZY"){}
 
     struct Item {
         uint256 id;

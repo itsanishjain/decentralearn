@@ -41,25 +41,30 @@
       <div class="collapse navbar-collapse" id="navBarItems">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a href="/learnzy" class="nav-link" target="_blank">Learnzy 🔥</a>
+            <a href="/" class="nav-link">Learnzy 🔥</a>
           </li>
-          <!-- <li class="nav-item">
-            <a href="home.html" class="nav-link" target="_blank">Home</a>
-          </li> -->
+
           <li class="nav-item">
-            <a href="listing.html" class="nav-link" target="_blank">Listing</a>
+            <a href="mylisting.html" class="nav-link">My Listing</a>
           </li>
+
           <li class="nav-item">
-            <a href="create.html" class="nav-link" target="_blank">Create</a>
-          </li>
-          <!-- <li class="nav-item">
-            <a href="detail.html" class="nav-link">Detail</a>
-          </li> -->
-          <li class="nav-item">
-            <a href="profile.html" class="nav-link" target="_blank">Profile</a>
+            <a href="listing.html" class="nav-link">Listing</a>
           </li>
           <li class="nav-item">
-            <a href="whitePaper.html" class="nav-link">whitePaper</a>
+            <a href="create.html" class="nav-link">Create</a>
+          </li>
+
+          <li class="nav-item">
+            <a href="profile.html" class="nav-link">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a
+              href="https://docs.google.com/document/d/1tu3gU3p1ilVbhrEf9AQ9YUxJr8_zHU_XMmw1RpNZo4s/edit?usp=sharing"
+              class="nav-link"
+              target="_blank"
+              >whitePaper</a
+            >
           </li>
         </ul>
       </div>
@@ -67,8 +72,21 @@
 
     <div class="container box" id="contact">
       <h2>Create</h2>
+      <p>
+        <small
+          >Currently we are only supporting Image content but soon we support
+          all kind of media - Videos, blogs, etc</small
+        >
+      </p>
+
+      <p>
+        <small>Once you upload your content it is there forever as we use IPFS and filecoine for storage, Hence no one downs your data even we can't do that.</small
+        >
+      </p>
+      
       <!-- <form  action="" method="post"> -->
       <div id="createItem" class="form-group">
+        <div class="alert alert-success" id="msg">Success!!</div>
         <div class="form-group">
           <label for="title">Title</label>
           <input
@@ -91,7 +109,7 @@
         </div>
 
         <div class="form-group">
-          <label class="form-label" for="image">Upload</label>
+          <label class="form-label" for="image">Upload your content</label>
           <input
             type="file"
             class="form-control-file"
@@ -110,6 +128,10 @@
           </select>
         </div>
 
+        <p style="line-height:1.5rem"><small>please wait for a while after clicking submit we are on test servers, and if you  submit big files it would take longer so please avoid.</small></p>
+
+
+
         <button
           id="btnCreateItem"
           type="submit"
@@ -117,6 +139,8 @@
         >
           Submit
         </button>
+
+        
 
         <div
           id="spinner"

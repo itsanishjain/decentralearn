@@ -6,9 +6,6 @@ body {
   color: #777;
 }
 
-
-
-
 section {
   margin-top: 40px;
 }
@@ -147,13 +144,9 @@ div.scrollcards .card {
   border-radius: 5px !important;
 }
 
-.gradient-text{
-  background-image: linear-gradient(#990a22 8%,
-  #c80936 50%,
-  #d31f1f 100%);
-
+.gradient-text {
+  background-image: linear-gradient(#990a22 8%, #c80936 50%, #d31f1f 100%);
 }
-
 
 .image--cover {
   width: 100px;
@@ -164,18 +157,14 @@ div.scrollcards .card {
   object-fit: cover;
   object-position: center right;
 }
-svg{
-  width: 60px; 
+svg {
+  width: 60px;
   height: 60px;
   display: flex;
-  
 }
-
-
 
 .footer {
   position: absolute;
-  
   right: 0;
   bottom: 0;
   left: 0;
@@ -183,4 +172,6 @@ svg{
   background-color: #efefef;
   text-align: center;
 }
+
+
 

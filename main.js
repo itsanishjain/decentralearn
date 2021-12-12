@@ -42,9 +42,6 @@ async function login() {
       document.getElementById("root").innerHTML =
         "Logged in as " + user.get("ethAddress");
     });
-    // showElement(navbar).catch(function (error) {
-    //   console.log(error);
-    // });
     showElement(logoutBtn);
   }
 }

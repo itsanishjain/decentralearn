@@ -12,6 +12,9 @@ const MARKETPLACE_CONTRACT_ADDRESS = "MARKETPLACE_CONTRACT_ADDRESS";
 hideElement = (element) => (element.style.display = "none");
 showElement = (element) => (element.style.display = "block");
 
+const msg = document.getElementById("msg");
+hideElement(msg);
+
 let user;
 let userAddress;
 
@@ -29,7 +32,7 @@ const init = async () => {
   } else {
     console.log("NOT LOGGED IN");
     // window.location.replace("learnzy");
-    alert("Please Login First")
+    alert("Please Login First");
   }
 };
 
@@ -39,8 +42,6 @@ const btnCreateItem = document.getElementById("btnCreateItem");
 
 createItem = async () => {
   console.log("BTN CLICKED FOR CREATING NFT");
-  hideElement(createItemBtn);
-  showElement(spinner);
 
   if (createItemFile.files.length == 0) {
     alert("Please select a file!");
@@ -51,7 +52,17 @@ createItem = async () => {
   //     return;
   //   }
 
+  hideElement(createItemBtn);
+  showElement(spinner);
+
   const nftFile = new Moralis.File("nftFile.jpg", createItemFile.files[0]);
+
+  console.log("NFT FILE::::::::::::::::", nftFile);
+
+  const cid = await nftDotStorage(createItemFile.files[0]);
+
+  console.log("HERE IS MY RETURNED CID >>>>>>>>>>>>>>>..", cid);
+
   await nftFile.saveIPFS();
 
   const nftFilePath = nftFile.ipfs();
@@ -61,7 +72,7 @@ createItem = async () => {
   const metadata = {
     name: createItemNameField.value,
     description: createItemDescriptionField.value,
-    image: nftFilePath,
+    image: "https://ipfs.io/ipfs/" + cid,
   };
 
   const nftFileMetadataFile = new Moralis.File("metadata.json", {
@@ -81,6 +92,7 @@ createItem = async () => {
     case "0":
       hideElement(spinner);
       showElement(createItemBtn);
+      showElement(msg);
       return;
     case "1":
       await ensureMarketplaceIsApproved(nftId, TOKEN_CONTRACT_ADDRESS);
@@ -93,10 +105,12 @@ createItem = async () => {
         .send({ from: userAddress });
       hideElement(spinner);
       showElement(createItemBtn);
+      showElement(msg);
       break;
     case "2":
       hideElement(spinner);
       showElement(createItemBtn);
+      showElement(msg);
       alert("Not yet supported!");
       return;
   }
@@ -145,3 +159,39 @@ const createItemStatusField = document.getElementById("selectCreateItemStatus");
 
 init();
 // window.location.reload();
+
+const nftDotStorage = async (img) => {
+  console.log("CALLED  NFT STORAGE...............");
+  console.log("IMG", img);
+  try {
+    const res = await fetch("https://api.nft.storage/upload", {
+      body: img,
+      headers: {
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweEY5YjA3NWQ1OWRGRGNhMjJBMDNEZDMyMmZFNDZjYjg1ZkYwY0I0NmMiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTYzOTMwNDk3MjY0NCwibmFtZSI6ImJ1aWxkaXQgaGFja2F0aG9uIn0.wX78irfOY8iBWvcxBuBKrQHpfp072lQy1Qjo8W_q4Mk",
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      method: "POST",
+    });
+
+    const data = await res.json();
+    console.log("RES", data);
+    const c = data.value.cid;
+    console.log("CID LLLLLLLLLLLLLLLLLLL", c);
+    return c;
+  } catch (err) {
+    console.log(err, "BIG ERRROR");
+    return;
+  }
+  // .then((res) => {
+  //   console.log(res);
+  //   return res.json();
+  // })
+  // .then((data) => {
+  //   console.log(data);
+  //   console.log("CID>>>>>>>>>",data.value.cid)
+  //   return data.value.cid
+  // }).catch((err)=>{
+  //   console.log("ERROR with NFT.storage",err)
+  // })
+};

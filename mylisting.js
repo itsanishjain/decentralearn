@@ -29,7 +29,7 @@ const init = async () => {
   } else {
     console.log("NOT LOGGED IN");
     // window.location.replace("/");
-    // alert("Please Login First")
+    alert("Please Login First");
   }
 };
 
@@ -61,20 +61,16 @@ renderUserItem = async (item) => {
 
   const userItem = userItemTemplate.cloneNode(true);
   userItem.getElementsByTagName("img")[0].src = item.image;
+  userItem.getElementsByTagName("a")[0].href = item.image;
   userItem.getElementsByTagName("img")[0].alt = item.name;
-  userItem.getElementsByTagName("h5")[0].innerText = item.name;
-  userItem.getElementsByTagName("p")[0].innerText = item.description;
   userItem.id = `user-item-${item.tokenObjectId}`;
-  
 
   userItems.appendChild(userItem);
 };
 
-
-loadAllItems = async () => {
-  const AllItems = await Moralis.Cloud.run("getAllItems");
-  console.log("ITEMS",AllItems);
-  AllItems.forEach((item) => {
+loadUserItems = async () => {
+  const ownedItems = await Moralis.Cloud.run("getUserItems");
+  ownedItems.forEach((item) => {
     const userItemListing = document.getElementById(
       `user-item-${item.tokenObjectId}`
     );
@@ -86,10 +82,6 @@ loadAllItems = async () => {
 init();
 
 const userItemTemplate = initTemplate("itemTemplate");
-// const userItemsSection = document.getElementById("userItems");
 const userItems = document.getElementById("userItemsList");
 
-
-
-
-loadAllItems();
+loadUserItems();

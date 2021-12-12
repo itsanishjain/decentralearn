@@ -16,6 +16,24 @@ Moralis.Cloud.define("getUserItems", async (request) => {
   return results;
 });
 
+Moralis.Cloud.define("getAllItems", async (request) => {
+  const query = new Moralis.Query("PolygonNFTOwners"); // Tabel name where our NFT saves
+  query.equalTo("contract_type", "ERC721");
+  query.equalTo("name", "DecentraLearn");
+  const queryResults = await query.find();
+  const results = [];
+  for (let i = 0; i < queryResults.length; ++i) {
+    results.push({
+      tokenObjectId: queryResults[i].id,
+      tokenId: queryResults[i].attributes.token_id,
+      tokenAddress: queryResults[i].attributes.token_address,
+      symbol: queryResults[i].attributes.symbol,
+      tokenUri: queryResults[i].attributes.token_uri,
+    });
+  }
+  return results;
+});
+
 Moralis.Cloud.beforeSave("ItemsForSale", async (request) => {
   const query = new Moralis.Query("NFTTokenOwners");
   query.equalTo("token_address", request.object.get("tokenAddress"));
